@@ -1075,3 +1075,236 @@
       transition: color 0.2s;
     }
     .nav-mobile a:hover { color: var(--accent); }
+/* ══════════════════════════════════════════════════
+   SEÇÃO TRUCO — JOGO INTERATIVO
+══════════════════════════════════════════════════ */
+#truco { background: var(--bg); }
+
+.truco-wrapper {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  max-width: 760px;
+}
+
+/* Placar */
+.truco-placar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.truco-scores { display: flex; gap: 16px; }
+.truco-score-box {
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 10px 22px;
+  text-align: center;
+  min-width: 80px;
+}
+.truco-score-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.truco-score-num { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--accent); }
+.truco-score-num.cpu { color: var(--accent3); }
+
+/* Vira + nível truco */
+.truco-info-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.truco-vira-label { font-size: 0.75rem; color: var(--muted); }
+.truco-vira-card {
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 6px 14px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  min-width: 52px;
+  text-align: center;
+}
+.truco-nivel-badge {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase;
+  background: rgba(124,107,248,0.15);
+  color: var(--accent2);
+  border: 1px solid rgba(124,107,248,0.3);
+  border-radius: 8px;
+  padding: 4px 12px;
+}
+
+/* Mensagem */
+.truco-msg {
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 10px 16px;
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-bottom: 18px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Mesa de jogo */
+.truco-mesa {
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+.truco-area-label {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+/* Cartas */
+.truco-cartas-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.truco-card {
+  width: 56px; height: 80px;
+  border-radius: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  gap: 2px;
+  position: relative;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  cursor: default;
+}
+.truco-card.jogavel {
+  cursor: none;
+}
+.truco-card.jogavel:hover {
+  transform: translateY(-12px);
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(0,212,255,0.2);
+}
+.truco-card.costas {
+  background: rgba(0,212,255,0.06);
+  border-color: rgba(0,212,255,0.2);
+  color: rgba(0,212,255,0.4);
+  font-size: 1.4rem;
+}
+.truco-card.mesa-card {
+  width: 48px; height: 68px;
+  font-size: 0.88rem;
+}
+.truco-card.vazia {
+  border: 1px dashed var(--border2);
+  background: transparent;
+}
+.truco-card.vermelha { color: #e05; }
+.truco-card.preta { color: var(--text); }
+.truco-card .manilha-badge {
+  position: absolute;
+  top: 3px; right: 4px;
+  font-size: 0.6rem;
+  color: var(--accent2);
+  background: rgba(124,107,248,0.2);
+  border-radius: 4px;
+  padding: 1px 4px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.truco-card .naipe { font-size: 0.75rem; }
+
+/* Separador mesa */
+.truco-sep {
+  border-top: 1px solid var(--border);
+  margin: 12px 0;
+}
+.truco-mesa-row {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+.truco-mesa-col { text-align: center; }
+.truco-mesa-col-label { font-size: 0.7rem; color: var(--muted); margin-bottom: 8px; }
+
+/* Rodadas vitórias */
+.truco-vitorias {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.truco-vic-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--border2);
+  transition: background 0.3s;
+}
+.truco-vic-dot.win { background: var(--green); box-shadow: 0 0 6px var(--green); }
+.truco-vic-dot.lose { background: var(--accent3); }
+
+/* Botões truco */
+.truco-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+.truco-btn {
+  padding: 9px 22px;
+  border-radius: 100px;
+  font-size: 0.83rem;
+  font-weight: 700;
+  border: none;
+  cursor: none;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.truco-btn-gritar {
+  background: var(--accent2);
+  color: white;
+  box-shadow: 0 4px 16px rgba(124,107,248,0.35);
+}
+.truco-btn-gritar:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,107,248,0.5); }
+.truco-btn-reset {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border2);
+}
+.truco-btn-reset:hover { color: var(--text); border-color: var(--text); }
+.truco-btn-nova {
+  background: var(--green);
+  color: #04080f;
+  box-shadow: 0 4px 16px rgba(0,255,136,0.3);
+}
+.truco-btn-nova:hover { transform: translateY(-2px); }
+.truco-legend {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 12px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.truco-legend .m-badge {
+  background: rgba(124,107,248,0.15);
+  color: var(--accent2);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+/* Projeto novo: Truco card */
+.project-card[data-filter="react"] .project-tag {
+  color: var(--accent2);
+  background: rgba(124,107,248,0.08);
+  border-color: rgba(124,107,248,0.2);
+}
